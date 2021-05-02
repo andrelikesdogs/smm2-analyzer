@@ -16,13 +16,14 @@ from smm2_analyzer.detections.Rating import run_rating_check
 from smm2_analyzer.playback import Playback
 
 parser = argparse.ArgumentParser(description="Run SMM Computervision analysis on files")
+parser.add_argument('file_glob', type=str, default="vids/*.mp4", nargs="?")
 parser.add_argument('file_index', type=int, default=0, nargs="?")
 parser.add_argument('frame_index', type=int, default=0, nargs="?")
 parser.add_argument('--no-render', action="store_true")
 args = parser.parse_args()
 
 if __name__ == "__main__":
-    vid_files = glob.glob("vids/*.mp4")
+    vid_files = glob.glob(args.file_glob)
     
     start_file_index = args.file_index
     start_frame = args.frame_index
